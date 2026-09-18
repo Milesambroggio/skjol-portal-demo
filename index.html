@@ -367,6 +367,76 @@ select,input[type=date]{font-family:'Josefin Sans';padding:.6rem .8rem;border:1p
 footer{border-top:1px solid var(--lav);padding:1.6rem;text-align:center;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--plum3)}
 footer .runes{font-size:.9rem;letter-spacing:.6em;margin-bottom:.5rem;color:var(--plum2)}
 @media(max-width:880px){.bookwrap,.swapwrap,.shwrap,.cardrow{grid-template-columns:1fr}.statrow{grid-template-columns:repeat(2,1fr)}nav{flex-wrap:wrap}}
+
+/* ---------- ENTITLEMENT LEDGER / HISTORY / ADMIN (Sept 2026 additions) ---------- */
+.ledger{margin-top:1rem}
+.ledger .lyear{display:flex;justify-content:space-between;align-items:baseline;margin:.2rem 0 .6rem}
+.ledger .lyear b{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--plum);font-weight:600}
+.ledger .lyear span{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--plum3)}
+.lbar{display:flex;height:.62rem;border-radius:1rem;overflow:hidden;background:var(--mist);margin-bottom:.55rem}
+.lbar i{display:block;height:100%}
+.lbar .used{background:var(--plum)}
+.lbar .resv{background:var(--plum3)}
+.lbar .forf{background:repeating-linear-gradient(45deg,#c9c2da 0 4px,#fff 4px 8px)}
+.lkey{display:grid;grid-template-columns:1fr 1fr;gap:.25rem .8rem;font-size:.72rem;color:var(--plum2)}
+.lkey span b{color:var(--ink);font-weight:500}
+.lkey .big{grid-column:1/-1;display:flex;justify-content:space-between;border-top:1px solid var(--lav);padding-top:.5rem;margin-top:.3rem;font-size:.8rem}
+.lkey .big b{font-size:1rem;color:var(--plum)}
+.bonus{margin-top:.7rem;font-size:.7rem;color:var(--plum3);line-height:1.5}
+.bonus b{color:var(--plum)}
+.lstrip{display:flex;gap:1.4rem;flex-wrap:wrap;align-items:center;background:#fff;border:1px solid var(--lav);border-radius:1rem;padding:.9rem 1.4rem;margin-bottom:1.6rem;font-size:.74rem;color:var(--plum2)}
+.lstrip b{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--plum);font-weight:600;margin-right:.25rem}
+.lstrip .k{font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--plum3);margin-right:auto}
+.lstrip .lk{cursor:pointer;text-decoration:underline;color:var(--plum)}
+.day.maint{background:repeating-linear-gradient(45deg,var(--mist) 0 5px,#fff 5px 10px);color:var(--plum3);cursor:not-allowed}
+.day.turn{background:var(--mist);color:var(--plum3);cursor:not-allowed;position:relative}
+.day.turn::before{content:"";position:absolute;inset:.35rem;border:1px dashed var(--plum3);border-radius:.35rem;opacity:.5}
+.day.prio{box-shadow:inset 0 0 0 1.5px var(--plum2)}
+.legend span i.maintk{background:repeating-linear-gradient(45deg,var(--mist) 0 3px,#fff 3px 6px)}
+.legend span i.turnk{background:var(--mist);border:1px dashed var(--plum3)}
+.toast{position:fixed;right:1.4rem;bottom:1.4rem;z-index:80;background:var(--plum);color:#fff;border-radius:1rem;padding:1rem 1.3rem;max-width:340px;box-shadow:0 20px 50px -20px rgba(46,40,70,.7);display:none;align-items:flex-start;gap:.8rem;animation:fade .4s}
+.toast.show{display:flex}
+.toast .pulse{width:.55rem;height:.55rem;border-radius:50%;background:#fff;margin-top:.35rem;flex:none;animation:pulse 1.8s infinite}
+.toast b{display:block;font-size:.8rem;letter-spacing:.06em;margin-bottom:.2rem}
+.toast div{font-size:.74rem;color:var(--lav);line-height:1.45}
+.live{display:inline-flex;align-items:center;gap:.4rem;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--plum3)}
+.live i{width:.45rem;height:.45rem;border-radius:50%;background:#3f8f5f;animation:pulse 1.8s infinite}
+.tbl{width:100%;border-collapse:collapse;font-size:.78rem}
+.tbl th{font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--plum3);text-align:left;padding:.5rem .6rem;border-bottom:1.5px solid var(--lav);font-weight:500}
+.tbl td{padding:.6rem .6rem;border-bottom:1px solid var(--mist);vertical-align:top;color:var(--ink)}
+.tbl td.num,.tbl th.num{text-align:right;font-variant-numeric:tabular-nums}
+.tbl tr:last-child td{border-bottom:none}
+.tbl .t{color:var(--plum3);font-size:.68rem;white-space:nowrap}
+.tbl .neg{color:#9B3B3B}.tbl .pos{color:#2F6B4F}
+.st{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;border-radius:1rem;padding:.25rem .55rem;white-space:nowrap}
+.st.done{background:var(--mist);color:var(--plum2)}.st.up{background:var(--plum);color:#fff}.st.can{background:#fff;border:1px solid var(--lav);color:var(--plum3)}.st.bon{background:var(--lav);color:var(--plum)}.st.lock{background:#F3E4E4;color:#9B3B3B}.st.good{background:#E4F0E8;color:#2F6B4F}
+.filters{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem}
+.filters button{background:#fff;border:1.5px solid var(--lav);color:var(--plum2);border-radius:2rem;padding:.4rem .9rem;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase}
+.filters button.on{background:var(--plum);border-color:var(--plum);color:#fff}
+.adgrid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.adgrid .wide{grid-column:1/-1}
+.form{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:.7rem .9rem;margin-bottom:1rem}
+.form label{display:block;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--plum3);margin-bottom:.3rem}
+.form input,.form select,.frow2 input,.frow2 select{width:100%;border:1px solid var(--lav);border-radius:.5rem;padding:.55rem .7rem;font-family:'Josefin Sans';font-size:.85rem;color:var(--ink);background:#fff}
+.form input:focus,.form select:focus{outline:none;border-color:var(--plum)}
+.frow2{display:flex;gap:.6rem;align-items:flex-end;flex-wrap:wrap}
+.frow2>div{flex:1;min-width:130px}
+.frow2 label{display:block;font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--plum3);margin-bottom:.3rem}
+.radio{display:flex;flex-direction:column;gap:.45rem;font-size:.78rem;color:var(--ink);margin:.4rem 0 1rem}
+.radio label{display:flex;gap:.5rem;align-items:flex-start;cursor:pointer}
+.radio input{margin-top:.2rem}
+.owner{display:grid;grid-template-columns:1fr 84px auto auto;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--mist);gap:.7rem}
+#ad-blocks .stay,#wl-list .stay{display:flex;justify-content:space-between;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--mist)}
+.owner:last-child{border-bottom:none}
+.owner .on2{font-weight:500;font-size:.86rem}
+.owner .om{font-size:.66rem;color:var(--plum3);letter-spacing:.1em;text-transform:uppercase;margin-top:.2rem}
+.owner .ob{width:84px}
+.ubar{height:.45rem;background:var(--mist);border-radius:1rem;overflow:hidden}
+.ubar i{display:block;height:100%;background:var(--plum)}
+.rulenote{font-size:.72rem;color:var(--plum2);line-height:1.55;background:var(--mist);border-radius:.7rem;padding:.8rem 1rem;margin-top:.8rem}
+.reqmatrix td:first-child{width:46%}
+@media(max-width:820px){.adgrid{grid-template-columns:1fr}.lkey{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -392,7 +462,9 @@ footer .runes{font-size:.9rem;letter-spacing:.6em;margin-bottom:.5rem;color:var(
     <button id="nav-book" onclick="go('book')">Book a Stay</button>
     <button id="nav-swap" onclick="go('swap')">Swap</button>
     <button id="nav-shuttle" onclick="go('shuttle')">Services</button>
-    <button id="nav-husbok" onclick="go('husbok')">Húsbók</button>
+            <button id="nav-husbok" onclick="go('husbok')">Húsbók</button>
+    <button id="nav-history" onclick="go('history')">History</button>
+    <button id="nav-admin" onclick="go('admin')" style="display:none">Front Desk</button>
     <button id="nav-profile" onclick="go('profile')">Profile</button>
     <div class="bellwrap"><button class="bell" onclick="go('swap')" title="Notifications">ᛒ</button><span class="badge" id="bellbadge"></span></div>
   </nav>
@@ -410,6 +482,7 @@ footer .runes{font-size:.9rem;letter-spacing:.6em;margin-bottom:.5rem;color:var(
     <div class="notif" id="homenotif"></div>
   </div>
   <div class="nudge" id="nudge"></div>
+  <div class="lstrip" id="lstrip"></div>
   <div class="nexthead">
     <h3>Up Next</h3>
     <span class="alllink" onclick="go('book')">All stays ›</span>
@@ -438,7 +511,7 @@ footer .runes{font-size:.9rem;letter-spacing:.6em;margin-bottom:.5rem;color:var(
 <!-- BOOKING -->
 <section id="pg-book" class="page">
   <div class="kick">Book a Stay</div>
-  <div class="h-page">Your Calendar, Two Years Deep</div>
+  <div class="h-page" style="display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap">Your Calendar, Two Years Deep <span class="live"><i></i>Live availability</span></div>
   <div class="bookwrap">
     <div class="panel">
       <div class="calhead">
@@ -451,7 +524,9 @@ footer .runes{font-size:.9rem;letter-spacing:.6em;margin-bottom:.5rem;color:var(
         <span><i style="background:#fff"></i>Open</span>
         <span><i style="background:var(--plum)"></i>Your stay</span>
         <span><i style="background:var(--lav)"></i>Reserved by co-owners</span>
-        <span><i style="background:#fff;box-shadow:inset 0 0 0 1.5px var(--plum3)"></i>30-day window — unlimited</span>
+        <span><i style="background:#fff;box-shadow:inset 0 0 0 1.5px var(--plum3)"></i>30-day window: bonus nights</span>
+        <span><i class="maintk"></i>Maintenance</span>
+        <span><i class="turnk"></i>Turnover day</span>
       </div>
     </div>
     <div>
@@ -464,6 +539,7 @@ footer .runes{font-size:.9rem;letter-spacing:.6em;margin-bottom:.5rem;color:var(
         </div>
         <div id="fn-out"><div class="note">Tell us how long — we’ll show you every window that fits.</div></div>
       </div>
+      <div class="panel ledger" id="ledger" style="margin-top:1rem"></div>
       <div class="panel caps" style="margin-top:1rem">
         <h3>Fair-Stay Limits</h3>
         <div class="cap"><div class="caplab"><span>Advance stays held</span><span id="cap-hold">—</span></div><div class="bar"><i id="bar-hold"></i></div></div>
@@ -477,6 +553,13 @@ footer .runes{font-size:.9rem;letter-spacing:.6em;margin-bottom:.5rem;color:var(
       <div class="panel" style="margin-top:1rem">
         <h3>Your Stays</h3>
         <div class="staylist" id="book-stays"></div>
+      </div>
+      <div class="panel" style="margin-top:1rem">
+        <h3>Waitlist</h3>
+        <div class="note" style="margin:-.4rem 0 .8rem">Dates held by a co-owner? Get first right if they release them.</div>
+        <div class="frow2"><div><label>First night</label><input id="wl-date" type="date"></div><div style="flex:.5"><label>Nights</label><input id="wl-nights" type="number" value="3" min="1" max="7"></div><button class="btn sm" onclick="joinWait()">Join</button></div>
+        <div id="wl-list" style="margin-top:.6rem"></div>
+        <div class="msg" id="wlmsg"></div>
       </div>
     </div>
   </div>
@@ -619,13 +702,163 @@ footer .runes{font-size:.9rem;letter-spacing:.6em;margin-bottom:.5rem;color:var(
       <div class="profrow"><span>Ski Locker</span><b>No. 17 · Level P1</b></div>
       <div class="profrow"><span>Front Desk</span><b>(970) 547-4000</b></div>
       <div class="profrow"><span>Nights This Year</span><b id="prof-nights">—</b></div>
+      <div class="profrow"><span>Annual Allotment</span><b id="prof-allot">—</b></div>
+      <div class="profrow"><span>Share Status</span><b id="prof-status">—</b></div>
       <div class="profrow"><span>Notifications</span><b id="profnotif">None</b></div>
     </div>
-    <button class="btn ghost" style="margin-top:2rem" onclick="logout()">Sign Out</button>
+    <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:2rem"><button class="btn ghost" id="prof-admin" onclick="setAdmin(!adminMode)">Front Desk View</button><button class="btn ghost" onclick="logout()">Sign Out</button></div>
+  </div>
+</section>
+
+
+
+
+
+
+<!-- HISTORY & AUDIT -->
+<section id="pg-history" class="page">
+  <div class="kick">Reservation History</div>
+  <div class="h-page">Your Ledger &amp; Audit Trail</div>
+  <div class="adgrid">
+    <div class="panel wide">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem">
+        <h3 style="margin-bottom:0">Every Stay, Every Year</h3>
+        <button class="btn ghost sm" onclick="exportCSV('stays')">Export CSV</button>
+      </div>
+      <div class="note" style="margin:0 0 1rem">Charged nights draw from the annual allotment for the use-year in which each night falls. Short-notice nights are bonus and are never charged. Forfeited nights are charged under the cancellation policy.</div>
+      <table class="tbl" id="hist-stays"></table>
+    </div>
+    <div class="panel wide">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem">
+        <h3 style="margin-bottom:0">Audit Trail</h3>
+        <button class="btn ghost sm" onclick="exportCSV('audit')">Export CSV</button>
+      </div>
+      <div class="note" style="margin:0 0 1rem">Every change to a reservation, balance, swap, rule or ownership record, with who made it and when. Read-only. In production this is an append-only table that nobody, including the front desk, can edit.</div>
+      <div class="filters" id="aud-filters"></div>
+      <table class="tbl" id="hist-audit"></table>
+    </div>
+  </div>
+</section>
+
+<!-- FRONT DESK / ADMIN -->
+<section id="pg-admin" class="page">
+  <div class="kick">Front Desk Console</div>
+  <div class="h-page">Residence 214 · Administration</div>
+  <div class="adgrid">
+    <div class="panel wide">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem">
+        <h3 style="margin-bottom:0">Usage Rules</h3>
+        <span class="live"><i></i>Rules in force · v<span id="rules-ver">1</span></span>
+      </div>
+      <div class="note" style="margin:.4rem 0 1rem">Seasons, holidays and limits are data, not code. Change a number here and every owner's calendar, balance and error message follows. Each change is versioned and logged; a reservation always keeps the rule set it was booked under.</div>
+      <div class="form">
+        <div><label>Usage model</label><select id="r-model"><option value="nights">Annual night allotment</option><option value="holds">Stays held (no annual cap)</option></select></div>
+        <div><label>Annual nights per 1/8</label><input id="r-annual" type="number" min="1" max="120"></div>
+        <div><label>Use-year</label><select id="r-useyear"><option value="calendar">Calendar year</option><option value="ski">Ski year (Oct to Sep)</option></select></div>
+        <div><label>Booking window (months)</label><input id="r-horizon" type="number" min="6" max="36"></div>
+        <div><label>Short-notice window (days)</label><input id="r-short" type="number" min="0" max="90"></div>
+        <div><label>Bonus nights charged?</label><select id="r-bonus"><option value="no">No, never charged</option><option value="yes">Yes, charged</option></select></div>
+        <div><label>Max nights, advance stay</label><input id="r-max" type="number" min="1" max="30"></div>
+        <div><label>Min nights, advance stay</label><input id="r-min" type="number" min="1" max="7"></div>
+        <div><label>Advance stays held at once</label><input id="r-holds" type="number" min="1" max="12"></div>
+        <div><label>Stays per peak season</label><input id="r-peak" type="number" min="1" max="6"></div>
+        <div><label>Holiday stays held</label><input id="r-hol" type="number" min="0" max="4"></div>
+        <div><label>Holiday first pick</label><select id="r-prio"><option value="rotating">Rotating priority</option><option value="none">First come, first served</option></select></div>
+        <div><label>Cancel notice (days)</label><input id="r-cancel" type="number" min="0" max="120"></div>
+        <div><label>Late peak cancellation</label><select id="r-late"><option value="forfeit">Nights forfeited</option><option value="return">Nights returned</option></select></div>
+        <div><label>Carry-over (nights max)</label><input id="r-carry" type="number" min="0" max="30"></div>
+        <div><label>Turnover day between owners</label><select id="r-turn"><option value="1">Yes, one day</option><option value="0">No</option></select></div>
+      </div>
+      <div style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap">
+        <button class="btn sm" onclick="applyRules()">Apply &amp; Version Rules</button>
+        <button class="btn ghost sm" onclick="loadRulesForm()">Discard Changes</button>
+        <span class="msg" id="rulesmsg" style="margin:0"></span>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Owners of Residence 214</h3>
+      <div class="note" style="margin:-.4rem 0 .8rem">Eight 1/8 shares. Bars show nights charged this use-year against the allotment. Locking a share for delinquent dues blocks new reservations until cleared.</div>
+      <div id="ad-owners"></div>
+    </div>
+
+    <div class="panel">
+      <h3>Ownership Transfer</h3>
+      <div class="note" style="margin:-.4rem 0 .8rem">Moves a share to a new owner at closing. Reservations either follow the share or are released, the remaining balance is pro-rated to the closing date, and both sides of the transfer are written to the audit trail.</div>
+      <div class="frow2">
+        <div><label>Share</label><select id="tr-share"></select></div>
+        <div><label>New owner</label><input id="tr-name" placeholder="The Okafor Family"></div>
+        <div><label>Closing date</label><input id="tr-date" type="date"></div>
+      </div>
+      <div class="radio">
+        <label><input type="radio" name="tr-res" value="transfer" checked>Confirmed reservations transfer to the buyer (seller's stays before closing are kept)</label>
+        <label><input type="radio" name="tr-res" value="release">Seller's reservations after closing are released to the calendar</label>
+        <label><input type="checkbox" id="tr-prorate" checked>Pro-rate the remaining annual balance to the closing date</label>
+      </div>
+      <button class="btn sm" onclick="doTransfer()">Record Transfer</button>
+      <div class="msg" id="trmsg"></div>
+    </div>
+
+    <div class="panel">
+      <h3>Maintenance &amp; Association Blocks</h3>
+      <div class="note" style="margin:-.4rem 0 .8rem">Nights that belong to no owner: deep cleans, repairs, inspections. Owners see them hatched on the calendar and cannot book over them.</div>
+      <div class="frow2">
+        <div><label>Start</label><input id="mb-date" type="date"></div>
+        <div style="flex:.5"><label>Nights</label><input id="mb-nights" type="number" value="2" min="1" max="14"></div>
+        <div><label>Reason</label><input id="mb-label" placeholder="Deep clean"></div>
+        <button class="btn sm" onclick="addBlock()">Add Block</button>
+      </div>
+      <div id="ad-blocks" style="margin-top:.8rem"></div>
+    </div>
+
+    <div class="panel">
+      <h3>Holiday First-Pick Rotation</h3>
+      <div class="note" style="margin:-.4rem 0 .8rem">Each marquee holiday rotates through the eight shares. The first-pick owner has an exclusive right to the holiday until 12 months before the date; after that it opens to everyone. Ties on the same second are settled by this order, never by who refreshed first.</div>
+      <table class="tbl" id="ad-prio"></table>
+    </div>
+
+    <div class="panel wide">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem">
+        <h3 style="margin-bottom:0">Utilization &amp; Fairness Report</h3>
+        <button class="btn ghost sm" onclick="exportCSV('util')">Export CSV</button>
+      </div>
+      <div class="note" style="margin:.4rem 0 1rem">What the association sees: nights used and reserved per share, peak-season stays and holiday weeks held, for the current use-year. Simulated for co-owners.</div>
+      <table class="tbl" id="ad-util"></table>
+    </div>
+
+    <div class="panel wide">
+      <h3>Requirements Coverage</h3>
+      <div class="note" style="margin:-.4rem 0 1rem">The reservation-platform requirements as listed by Operations, and where each one lives in this prototype.</div>
+      <table class="tbl reqmatrix">
+        <tr><th>Requirement</th><th>Where it lives</th><th>Status</th></tr>
+        <tr><td>Track each owner's annual night entitlement and remaining usage</td><td>Your Nights ledger on Book a Stay, home strip, Profile, per-owner report here</td><td><span class="st good">Built</span></td></tr>
+        <tr><td>Rolling reservation window (24 months)</td><td>Calendar horizon and rule check; months in the Usage Rules panel</td><td><span class="st good">Built</span></td></tr>
+        <tr><td>Seasonal and holiday booking limitations</td><td>Peak-season caps, holiday cap, holiday first-pick rotation with exclusive window</td><td><span class="st good">Built</span></td></tr>
+        <tr><td>Bonus usage: nights within 30 days not counted</td><td>Short-notice stays flagged bonus, shown separately, never charged (switchable)</td><td><span class="st good">Built</span></td></tr>
+        <tr><td>Prevent owners exceeding allotted rights</td><td>Every booking, modification and swap acceptance re-checks the rules; dues lock</td><td><span class="st good">Built</span></td></tr>
+        <tr><td>Owner-to-owner reservation exchanges</td><td>Swap page; acceptance re-verifies both owners' limits at that moment</td><td><span class="st good">Built</span></td></tr>
+        <tr><td>Reservation history and audit trail</td><td>History page: every stay by use-year plus append-only audit log, CSV export</td><td><span class="st good">Built</span></td></tr>
+        <tr><td>Ownership transfers with reservation integrity</td><td>Ownership Transfer here: reservations follow or release, balance pro-rated, both sides logged</td><td><span class="st good">Built</span></td></tr>
+        <tr><td>Simple booking with real-time availability</td><td>Calendar, finder, live co-owner updates (simulated here; live database in production)</td><td><span class="st bon">Prototype</span></td></tr>
+        <tr><td>Added: cancellation policy and waitlist</td><td>Notice window, peak forfeiture, waitlist with first right on release</td><td><span class="st good">Built</span></td></tr>
+        <tr><td>Added: maintenance blocks, turnover days, rule versioning</td><td>Blocks and turnover on the calendar; every rule change versioned and logged</td><td><span class="st good">Built</span></td></tr>
+        <tr><td>Added: carry-over of unused nights</td><td>Ledger carries up to the configured maximum into the next use-year</td><td><span class="st good">Built</span></td></tr>
+      </table>
+    </div>
+    <div class="panel wide">
+      <h3>Simulate</h3>
+      <div class="note" style="margin:-.4rem 0 .8rem">Demo controls only. In production these events arrive from other owners' sessions over a live connection.</div>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+        <button class="btn ghost sm" onclick="simCoOwnerBooking()">Co-owner books a stay now</button>
+        <button class="btn ghost sm" onclick="simCoOwnerRelease()">Co-owner releases a stay (waitlist)</button>
+        <button class="btn ghost sm" onclick="simSwapRequest()">Incoming swap request</button>
+      </div>
+    </div>
   </div>
 </section>
 
 </main>
+<div class="toast" id="toast"></div>
 <div id="confirm"><div class="confcard">
   <img src="data:image/png;base64,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" alt="Skjól">
   <div class="ct" id="conf-title">You’re coming home.</div>
@@ -818,7 +1051,7 @@ let shuttles=[];
 function nightsBookedThisYear(){let n=0;myStays.forEach(s=>{for(let i=0;i<s.nights;i++){const dt=addD(s.start,i);if(dt.getFullYear()===today.getFullYear())n++}});return n+9}
 function stayDays(s){const set=[];for(let i=0;i<s.nights;i++)set.push(addD(s.start,i));return set}
 function dayMap(){const m={};otherStays.forEach(s=>stayDays(s).forEach(dt=>m[key(dt)]='other'));myStays.forEach((s,i)=>{if(i===modifyIdx)return;stayDays(s).forEach(dt=>m[key(dt)]='mine')});return m}
-function isAdvance(s){return (s.start-today)/MS>30}
+function isAdvance(s){return (s.start-today)/MS>RULES.shortNoticeDays}
 function usage(){
   const adv=myStays.filter((s,i)=>i!==modifyIdx&&isAdvance(s));
   const win=adv.filter(s=>stayDays(s).some(isWinterPeak)).length;
@@ -860,7 +1093,7 @@ function runFinder(){
   const el=document.getElementById('fn-out');
   if(!out.length){el.innerHTML='<div class="note">No open '+n+'-night windows in the next 14 months — try fewer nights.</div>';return}
   el.innerHTML=out.map(st=>{
-    const en=addD(st,n-1); const short=(st-today)/MS<=30;
+    const en=addD(st,n-1); const short=(st-today)/MS<=RULES.shortNoticeDays;
     const tags=[short?'Short-notice':null,
       isWinterPeak(st)||isWinterPeak(en)?'Winter peak':null,
       isSummerPeak(st)||isSummerPeak(en)?'Summer peak':null].filter(Boolean).join(' · ')||'Open';
@@ -877,7 +1110,7 @@ function finderPick(y,m,dd,n){
 /* ================= NAV / LOGIN ================= */
 function doLogin(){document.getElementById('login').classList.add('gone');render()}
 function logout(){document.getElementById('login').classList.remove('gone')}
-function go(p){
+function go0(p){
   document.body.dataset.page=p;
   document.querySelectorAll('.page').forEach(e=>e.classList.remove('on'));
   document.querySelectorAll('nav button').forEach(e=>e.classList.remove('on'));
@@ -897,7 +1130,7 @@ function nudgeTarget(){
   return null;
 }
 let nudgeConfirm=null;
-function claimNight(){
+function claimNight0(){
   const t=nudgeTarget(); if(!t)return;
   myStays.push({start:t.dt,nights:1,label:'Short-notice'});
   nudgeConfirm=(t.off===0?'tonight':'tomorrow night');
@@ -957,7 +1190,7 @@ function calMove(n){
   let m=calM+n, y=calY;
   if(m<0){m=11;y--} if(m>11){m=0;y++}
   const min=new Date(today.getFullYear(),today.getMonth(),1);
-  const max=new Date(today.getFullYear(),today.getMonth()+24,1);
+  const max=new Date(today.getFullYear(),today.getMonth()+RULES.horizonMonths,1);
   const t=new Date(y,m,1);
   if(t<min||t>max)return;
   calY=y;calM=m;renderCal();
@@ -975,13 +1208,16 @@ function renderCal(){
     if(dt<today)cls+=' past';
     else if(map[k]==='other')cls+=' other';
     else if(map[k]==='mine')cls+=' mine';
-    else if(diff<=30)cls+=' shortwin';
+    else if(map[k]==='maint')cls+=' maint';
+    else if(map[k]==='turn')cls+=' turn';
+    else if(diff<=RULES.shortNoticeDays)cls+=' shortwin';
     if(selStart&&selEnd&&dt>=selStart&&dt<=selEnd&&!cls.includes('other')&&!cls.includes('mine')&&!cls.includes('past'))cls+=' sel';
     else if(selStart&&!selEnd&&dt.getTime()===selStart.getTime())cls+=' sel';
     const hol=isHoliday(dt)?'<span class="hol">ᛏ</span>':'';
     const evs=eventsOn(dt);
     const dot=evs.length?'<span class="evdot"></span>':'';
-    const tip=evs.length?` title="${evs.map(e=>e.n).join(' · ')}"`:'';
+    const tipTxt=[map[k]==='other'?'Reserved by '+whoOn(dt):null,map[k]==='maint'?(maintenance.find(b=>dt>=b.start&&dt<addD(b.start,b.nights))||{}).label:null,map[k]==='turn'?'Turnover day (housekeeping)':null,...evs.map(e=>e.n)].filter(Boolean);
+    const tip=tipTxt.length?` title="${tipTxt.join(' · ')}"`:'';
     html+=`<div class="${cls}"${tip} onclick="pick(${calY},${calM+1},${dd})">${hol}${dd}${dot}</div>`;
   }
   document.getElementById('cal-days').innerHTML=html;
@@ -1004,7 +1240,7 @@ function selInfo(){
   if(!selStart||!selEnd)return null;
   const nights=Math.round((selEnd-selStart)/MS)+1;
   const days=[];for(let t=new Date(selStart);t<=selEnd;t=addD(t,1))days.push(new Date(t));
-  const short=(selStart-today)/MS<=30;
+  const short=(selStart-today)/MS<=RULES.shortNoticeDays;
   return {nights,days,short,
     win:days.some(isWinterPeak),sum:days.some(isSummerPeak),hol:days.some(isHoliday)};
 }
@@ -1023,7 +1259,7 @@ function renderSel(){
   const si=selInfo();
   const mod=modifyIdx!==null?myStays[modifyIdx]:null;
   const modLine=mod?`<b>Modifying your ${fmtS(mod.start)} – ${fmtS(addD(mod.start,mod.nights))} stay.</b> Pick new dates — your current dates stay yours until you confirm. <span style="text-decoration:underline;cursor:pointer" onclick="cancelModify()">Keep existing dates</span><br>`:'';
-  if(!si){box.innerHTML=modLine+'Select a start night, then an end night.<br><span style="font-size:.72rem;color:var(--plum3)">Advance stays: up to 7 nights · Inside 30 days: unlimited</span>';btn.disabled=true;btn.textContent=mod?'Confirm New Dates':'Confirm Stay';return}
+  if(!si){box.innerHTML=modLine+'Select a start night, then an end night.<br><span style="font-size:.72rem;color:var(--plum3)">Advance stays: '+RULES.minNightsAdvance+' to '+RULES.maxNightsAdvance+' nights · Inside '+RULES.shortNoticeDays+' days: unlimited bonus nights</span>';btn.disabled=true;btn.textContent=mod?'Confirm New Dates':'Confirm Stay';return}
   const r=checkRules(si);
   const tags=[si.short?'Short-notice':'Advance',si.win?'Winter peak':null,si.sum?'Summer peak':null,si.hol?'Holiday':null].filter(Boolean).join(' · ');
   const evNames=[...new Set(si.days.flatMap(eventsOn).map(e=>e.n))];
@@ -1133,7 +1369,7 @@ function pickWant(i){
 function toggleOffer(i){offerSet.has(i)?offerSet.delete(i):offerSet.add(i);renderSwap()}
 function swapBack(){setStep(1);renderSwap()}
 function swapReset(){wantIdx=null;offerSet.clear();setStep(1);renderSwap()}
-function proposeSwap(){
+function proposeSwap0(){
   const adv=myStays.filter(isAdvance);
   const want=swapPool[wantIdx];
   const offers=[...offerSet].map(i=>adv[i]);
@@ -1242,12 +1478,441 @@ function renderCbOrders(){
 
 /* ================= UTIL ================= */
 function flash(id,cls,txt){const e=document.getElementById(id);e.className='msg '+cls;e.textContent=txt;setTimeout(()=>{e.className='msg'},5200)}
-function render(){renderHome();renderCal();renderSwap();renderShuttles();renderEvents();renderDrinks();renderCbOrders()}
+function render0(){renderHome();renderCal();renderSwap();renderShuttles();renderEvents();renderDrinks();renderCbOrders()}
 setStep(1);
 document.getElementById('sh-date').value=new Date(today.getTime()+MS).toISOString().slice(0,10);
 document.getElementById('sh-date').min=new Date().toISOString().slice(0,10);
 renderTimes();
+</script>
+<script>
+
+/* ================= RULES, OWNERS, LEDGER, AUDIT, ADMIN (Sept 2026) ================= */
+const RULES={
+  version:1,
+  model:'nights',          /* 'nights' = annual allotment, 'holds' = stays-held caps only */
+  annualNights:44,         /* per 1/8 share, per use-year */
+  useYear:'calendar',      /* 'calendar' or 'ski' (Oct 1 to Sep 30) */
+  horizonMonths:24,
+  shortNoticeDays:30,
+  bonusCharged:false,      /* short-notice nights never draw from the allotment */
+  maxNightsAdvance:7, minNightsAdvance:2,
+  maxHolds:6, peakCap:2, holidayCap:1,
+  holidayPriority:'rotating', priorityExclusiveMonths:12,
+  cancelNoticeDays:30, lateCancelPeak:'forfeit',
+  carryMax:7,
+  turnoverDays:1,
+  duesLock:false
+};
+const OWNERS=[
+  {id:'AA',name:'The Anderson Family',short:'Anderson',since:'2026',status:'good',you:true},
+  {id:'LA',name:'The Larsson Family',short:'Larsson',since:'2026',status:'good'},
+  {id:'HO',name:'The Holt Family',short:'Holt',since:'2026',status:'good'},
+  {id:'BE',name:'The Bergman Family',short:'Bergman',since:'2026',status:'good'},
+  {id:'SO',name:'The Sørensen Family',short:'Sørensen',since:'2026',status:'good'},
+  {id:'WH',name:'The Whitaker Family',short:'Whitaker',since:'2026',status:'good'},
+  {id:'NA',name:'The Nakamura Family',short:'Nakamura',since:'2026',status:'good'},
+  {id:'RE',name:'The Reyes Family',short:'Reyes',since:'2026',status:'delinquent'}
+];
+const ME=OWNERS[0];
+/* give every seeded co-owner stay a real owner so the calendar, report and audit can name them */
+otherStays.forEach((s,i)=>{s.owner=OWNERS[1+(i%7)];s.who=s.owner.name});
+/* completed stays earlier this use-year (seed) */
+let pastStays=[
+  {start:d(today.getFullYear(),2,6),nights:5,label:'Advance stay',status:'completed'},
+  {start:d(today.getFullYear(),5,15),nights:4,label:'Advance stay',status:'completed'},
+  {start:d(today.getFullYear(),8,28),nights:2,label:'Short-notice',status:'completed',bonus:true}
+];
+let cancelledStays=[];   /* {start,nights,label,status:'cancelled',forfeit,when} */
+let forfeits={};         /* useYear -> nights charged by cancellation policy */
+let maintenance=[{start:addD(today,96),nights:2,label:'Deep clean & inspection'},{start:addD(today,401),nights:3,label:'Annual mechanical service'}];
+let waitlist=[];         /* {start,nights} */
+let AUDIT=[];
+let adminMode=false;
+let audFilter='all';
+const nowStamp=(off)=>{const t=new Date();t.setMinutes(t.getMinutes()-(off||0));return t};
+function log(action,detail,opts){
+  opts=opts||{};
+  AUDIT.unshift({t:opts.t||new Date(),who:opts.who||ME.name,action,detail,delta:opts.delta===undefined?'':opts.delta,cat:opts.cat||'stay',rules:'v'+RULES.version});
+  if(AUDIT.length>400)AUDIT.pop();
+}
+/* seed the audit trail so history is not empty on first open */
+(function seedAudit(){
+  const y=today.getFullYear();
+  const at=(m,dd,h)=>{const t=d(y,m,dd);t.setHours(h||9,14);return t};
+  log('Share activated','1/8 share of Residence 214 recorded to The Anderson Family. Use-year '+y+': '+RULES.annualNights+' nights.',{t:at(1,4,8),who:'Front Desk',cat:'owner',delta:'+'+RULES.annualNights});
+  log('Reservation confirmed','Feb 6 – Feb 11, '+y+' · 5 nights · advance',{t:at(1,9,19),delta:'-5'});
+  log('Reservation confirmed','May 15 – May 19, '+y+' · 4 nights · advance',{t:at(2,22,12),delta:'-4'});
+  log('Stay completed','Feb 6 – Feb 11, '+y+' · 5 nights',{t:at(2,11,11),who:'System'});
+  log('Stay completed','May 15 – May 19, '+y+' · 4 nights',{t:at(5,19,11),who:'System'});
+  log('Reservation confirmed','Aug 28 – Aug 30, '+y+' · 2 nights · short-notice (bonus, not charged)',{t:at(8,26,7),delta:'0'});
+  log('Stay completed','Aug 28 – Aug 30, '+y+' · 2 nights',{t:at(8,30,11),who:'System'});
+  myStays.forEach((s,i)=>log('Reservation confirmed',fmtS(s.start)+' – '+fmtS(addD(s.start,s.nights))+' · '+s.nights+' nights · advance',{t:nowStamp(60*24*(20-i*6)),delta:'-'+s.nights}));
+  log('Swap request received','The Larsson Family (Residence 210) offered '+fmtS(swapIncoming[0].get.start)+' – '+fmtS(addD(swapIncoming[0].get.start,swapIncoming[0].get.nights))+' for your '+fmtS(swapIncoming[0].give.start)+' – '+fmtS(addD(swapIncoming[0].give.start,swapIncoming[0].give.nights)),{t:nowStamp(60*26),who:'The Larsson Family',cat:'swap',delta:'0'});
+  log('Share locked','The Reyes Family: association dues 60+ days past due. New reservations blocked until cleared.',{t:nowStamp(60*24*3),who:'Front Desk',cat:'owner'});
+})();
+
+/* ---- use-year helpers ---- */
+function useYearOf(dt){
+  if(RULES.useYear==='ski'){return dt.getMonth()>=9?dt.getFullYear()+1:dt.getFullYear()}
+  return dt.getFullYear();
+}
+function useYearLabel(y){return RULES.useYear==='ski'?(y-1)+'/'+String(y).slice(2)+' ski year':String(y)}
+const thisUseYear=()=>useYearOf(today);
+function isShort(start){return (start-today)/MS<=RULES.shortNoticeDays}
+function isBonusStay(s){return !!s.bonus||s.label==='Short-notice'}
+
+/* ---- the ledger: nights per use-year ---- */
+function ledger(y){
+  const L={year:y,allot:RULES.annualNights,used:0,reserved:0,bonus:0,forfeit:forfeits[y]||0,carry:0};
+  const charge=(s,field)=>{for(let i=0;i<s.nights;i++){const dt=addD(s.start,i);if(useYearOf(dt)!==y)continue;if(isBonusStay(s)&&!RULES.bonusCharged)L.bonus++;else L[field]++}};
+  pastStays.forEach(s=>charge(s,'used'));
+  myStays.forEach((s,i)=>{if(i===modifyIdx)return;charge(s,'reserved')});
+  if(RULES.carryMax>0&&y===thisUseYear()+1){
+    const prev=ledger(y-1);L.carry=Math.max(0,Math.min(RULES.carryMax,prev.remaining));
+  }
+  L.remaining=L.allot+L.carry-L.used-L.reserved-L.forfeit;
+  return L;
+}
+function nightsNeeded(days){const m={};days.forEach(dt=>{const y=useYearOf(dt);m[y]=(m[y]||0)+1});return m}
+
+/* ---- holiday priority rotation ---- */
+const MARQUEE=[{k:'xmas',n:'Christmas',m:12,dd:24,len:3},{k:'nye',n:'New Year’s',m:12,dd:30,len:3},{k:'july4',n:'Independence Day',m:7,dd:3,len:3},{k:'tg',n:'Thanksgiving',m:11,dd:25,len:4}];
+function priorityOwner(k,year){
+  const i=MARQUEE.findIndex(h=>h.k===k);
+  /* rotate: year advances the pointer, each holiday starts at a different offset so no owner holds two marquee dates in one year */
+  return OWNERS[(year+i*2)%OWNERS.length];
+}
+function marqueeOn(dt){
+  for(const h of MARQUEE){
+    const yr=(h.k==='nye'&&dt.getMonth()===0)?dt.getFullYear()-1:dt.getFullYear();
+    const s=d(yr,h.m,h.dd);
+    if(dt>=s&&dt<addD(s,h.len))return {h,year:yr,start:s};
+  }
+  return null;
+}
+function priorityCheck(days){
+  if(RULES.holidayPriority!=='rotating')return {ok:true};
+  for(const dt of days){
+    const mq=marqueeOn(dt); if(!mq)continue;
+    const owner=priorityOwner(mq.h.k,mq.year);
+    const opens=new Date(mq.start); opens.setMonth(opens.getMonth()-RULES.priorityExclusiveMonths);
+    if(owner.you)return {ok:true,note:'You hold first pick for '+mq.h.n+' '+mq.year+'.'};
+    if(today<opens)return {ok:false,why:mq.h.n+' '+mq.year+' is '+owner.name+'’s first pick under the rotation. It opens to all owners on '+fmt(opens)+'.'};
+  }
+  return {ok:true};
+}
+
+/* ---- calendar map with maintenance + turnover ---- */
+function dayMap(){
+  const m={};
+  otherStays.forEach(s=>{stayDays(s).forEach(dt=>m[key(dt)]='other');
+    if(RULES.turnoverDays>0){for(let t=0;t<RULES.turnoverDays;t++){const k=key(addD(s.start,s.nights+t));if(!m[k])m[k]='turn'}}});
+  maintenance.forEach(b=>stayDays(b).forEach(dt=>m[key(dt)]='maint'));
+  myStays.forEach((s,i)=>{if(i===modifyIdx)return;stayDays(s).forEach(dt=>m[key(dt)]='mine')});
+  return m;
+}
+function whoOn(dt){const s=otherStays.find(s=>dt>=s.start&&dt<addD(s.start,s.nights));return s?s.who:null}
+
+/* ---- the rule check, both models ---- */
+function checkRules(si){
+  if(RULES.duesLock||ME.status==='delinquent')return {ok:false,why:'Reservations are paused on this share until association dues are current. Call the front desk at (970) 547-4000.'};
+  const horizon=new Date(today);horizon.setMonth(horizon.getMonth()+RULES.horizonMonths);
+  if(si.days[si.days.length-1]>horizon)return {ok:false,why:'Beyond the '+RULES.horizonMonths+'-month booking window. Those nights open on '+fmt(addD(si.days[si.days.length-1],-Math.round(RULES.horizonMonths*30.44)))+'.'};
+  const u=usage();
+  if(si.short){
+    if(RULES.model==='nights'&&RULES.bonusCharged){
+      const need=nightsNeeded(si.days);for(const y in need){if(need[y]>ledger(+y).remaining)return {ok:false,why:'Only '+ledger(+y).remaining+' nights remain for '+useYearLabel(+y)+'; this stay needs '+need[y]+'.'}}
+      return {ok:true,why:'Short-notice stay inside the '+RULES.shortNoticeDays+'-day window. No caps, but nights are charged under the current rules.'};
+    }
+    return {ok:true,why:'Short-notice stay inside the '+RULES.shortNoticeDays+'-day window. Unlimited, and these bonus nights are not charged to your allotment.'};
+  }
+  if(si.nights>RULES.maxNightsAdvance)return {ok:false,why:'Advance stays have a '+RULES.maxNightsAdvance+'-night maximum. Split the stay, or book part of it inside the '+RULES.shortNoticeDays+'-day window.'};
+  if(si.nights<RULES.minNightsAdvance)return {ok:false,why:'Advance stays are at least '+RULES.minNightsAdvance+' nights. Single nights are always available inside the '+RULES.shortNoticeDays+'-day window.'};
+  if(RULES.model==='nights'){
+    const need=nightsNeeded(si.days);
+    for(const y in need){const L=ledger(+y);if(need[y]>L.remaining)return {ok:false,why:'This stay needs '+need[y]+' night'+(need[y]>1?'s':'')+' from '+useYearLabel(+y)+' and you have '+Math.max(0,L.remaining)+' remaining. Shorten the stay, release another, or book inside the '+RULES.shortNoticeDays+'-day window as bonus nights.'}}
+  }
+  if(u.hold>=RULES.maxHolds)return {ok:false,why:'You already hold '+RULES.maxHolds+' advance stays, the maximum at one time. Complete or release a stay to book another.'};
+  if(si.win&&u.win>=RULES.peakCap)return {ok:false,why:'You already hold '+RULES.peakCap+' winter-peak stays, the seasonal maximum.'};
+  if(si.sum&&u.sum>=RULES.peakCap)return {ok:false,why:'You already hold '+RULES.peakCap+' summer-peak stays, the seasonal maximum.'};
+  if(si.hol&&u.hol>=RULES.holidayCap)return {ok:false,why:'You already hold '+(RULES.holidayCap===1?'a holiday stay':RULES.holidayCap+' holiday stays')+'. One at a time keeps marquee dates fair for every owner.'};
+  const pr=priorityCheck(si.days); if(!pr.ok)return pr;
+  const need=nightsNeeded(si.days);
+  const chargeTxt=RULES.model==='nights'?Object.keys(need).map(y=>need[y]+' night'+(need[y]>1?'s':'')+' from '+useYearLabel(+y)).join(' and '):'counts toward your held-stay limits';
+  return {ok:true,why:'Advance stay: '+chargeTxt+'.'+(pr.note?' '+pr.note:'')};
+}
+
+/* ---- booking, cancelling, swapping: same UX, now written to the ledger and audit ---- */
+function confirmBooking(){
+  const si=selInfo(); if(!si)return;
+  const r=checkRules(si); if(!r.ok)return;
+  const stay={start:new Date(selStart),nights:si.nights,label:si.short?'Short-notice':'Advance stay',bonus:si.short,temp:70,rules:'v'+RULES.version};
+  const need=nightsNeeded(si.days);const delta=(si.short&&!RULES.bonusCharged)?'0':'-'+si.nights;
+  let title='You’re coming home.';
+  if(modifyIdx!==null){
+    const old=myStays[modifyIdx];stay.temp=old.temp||70;myStays[modifyIdx]=stay;modifyIdx=null;title='Your stay has moved.';
+    log('Reservation modified',fmtS(old.start)+' – '+fmtS(addD(old.start,old.nights))+' → '+fmtS(stay.start)+' – '+fmtS(addD(stay.start,stay.nights))+' · '+stay.nights+' nights',{delta:(isBonusStay(old)?0:old.nights)-(stay.bonus&&!RULES.bonusCharged?0:stay.nights)});
+  } else {
+    myStays.push(stay);
+    log('Reservation confirmed',fmtS(stay.start)+' – '+fmtS(addD(stay.start,stay.nights))+' · '+stay.nights+' nights · '+(stay.bonus?'short-notice (bonus)':'advance'),{delta});
+  }
+  selStart=selEnd=null;
+  render();
+  const L=ledger(useYearOf(stay.start));
+  const bal=RULES.model==='nights'?(stay.bonus&&!RULES.bonusCharged?'Bonus nights: nothing charged. ':'')+L.remaining+' nights remain for '+useYearLabel(L.year)+'.':'';
+  showConfirm(title,`<b>${fmtS(stay.start)} – ${fmtS(addD(stay.start,stay.nights))}</b> · ${stay.nights} night${stay.nights>1?'s':''} at Residence 214.<br>${bal} Your residence will be warm, lit and ready. Velkomin heim.`,stay);
+}
+function cancelStay(i){
+  if(modifyIdx===i)modifyIdx=null;
+  const s=myStays[i];
+  const daysOut=Math.round((s.start-today)/MS);
+  const peak=stayDays(s).some(dt=>isWinterPeak(dt)||isSummerPeak(dt)||isHoliday(dt));
+  let msg='Stay released. Those nights are open to your co-owners';
+  let delta='+'+s.nights;
+  if(!isBonusStay(s)&&RULES.model==='nights'&&daysOut<RULES.cancelNoticeDays&&peak&&RULES.lateCancelPeak==='forfeit'){
+    const need=nightsNeeded(stayDays(s));for(const y in need)forfeits[y]=(forfeits[y]||0)+need[y];
+    msg='Stay released inside the '+RULES.cancelNoticeDays+'-day notice window. Under the cancellation policy the '+s.nights+' peak nights are forfeited and stay charged to your allotment';
+    delta='0 (forfeited)';
+  } else if(isBonusStay(s)){msg='Short-notice stay released. Bonus nights were never charged';delta='0'} else msg+=' and '+s.nights+' nights return to your balance';
+  cancelledStays.push({...s,status:'cancelled',when:new Date(),forfeit:delta.includes('forfeit')});
+  myStays.splice(i,1);
+  log('Reservation released',fmtS(s.start)+' – '+fmtS(addD(s.start,s.nights))+' · '+s.nights+' nights · '+(daysOut<0?'in progress':daysOut+' days out'),{delta});
+  /* waitlist: notify the first owner waiting on any of these nights (simulated) */
+  const hit=waitlist.find(w=>stayDays(w).some(dt=>dt>=s.start&&dt<addD(s.start,s.nights)));
+  if(hit)toast('Waitlist notified','Those nights matched a waitlisted request. The waiting owner has 24 hours to confirm before they open to everyone.');
+  flash('bookmsg','ok',msg+'.');
+  render();
+}
+function acceptSwap(i){
+  const r=swapIncoming[i];
+  const idx=myStays.findIndex(s=>s.start.getTime()===r.give.start.getTime());
+  /* re-check caps at accept time: the exchange must pass the receiving owner's rules too */
+  const gained={start:new Date(r.get.start),nights:r.get.nights,label:'Advance stay (swapped)',rules:'v'+RULES.version};
+  const saveIdx=modifyIdx; modifyIdx=idx>-1?idx:null;
+  const days=stayDays(gained);
+  const si={nights:gained.nights,days,short:isShort(gained.start),win:days.some(isWinterPeak),sum:days.some(isSummerPeak),hol:days.some(isHoliday)};
+  const chk=checkRules(si); modifyIdx=saveIdx;
+  if(!chk.ok){flash('swapmsg','err','Swap cannot be accepted: '+chk.why);log('Swap accept blocked',chk.why,{cat:'swap',delta:'0'});return}
+  if(idx>-1)myStays.splice(idx,1);
+  myStays.push(gained);
+  swapIncoming.splice(i,1);
+  log('Swap accepted','Gave '+fmtS(r.give.start)+' – '+fmtS(addD(r.give.start,r.give.nights))+' ('+r.give.nights+' n) · received '+fmtS(r.get.start)+' – '+fmtS(addD(r.get.start,r.get.nights))+' ('+r.get.nights+' n) from '+r.who,{cat:'swap',delta:(r.give.nights-r.get.nights>=0?'+':'')+(r.give.nights-r.get.nights)});
+  flash('swapmsg','ok','Swap accepted. Both calendars and both balances updated.');
+  render();
+}
+function declineSwap(i){const r=swapIncoming[i];swapIncoming.splice(i,1);log('Swap declined','Request from '+r.who+' for '+fmtS(r.give.start)+' – '+fmtS(addD(r.give.start,r.give.nights)),{cat:'swap',delta:'0'});flash('swapmsg','ok','Request declined.');render()}
+const _proposeSwap=proposeSwap0;
+function proposeSwap(){const want=swapPool[wantIdx];_proposeSwap();log('Swap requested','Asked '+want.who+' for '+want.res+' · '+fmtS(want.start)+' – '+fmtS(addD(want.start,want.nights)),{cat:'swap',delta:'0'})}
+const _claimNight=claimNight0;
+function claimNight(){const t=nudgeTarget();if(!t)return;_claimNight();const s=myStays[myStays.length-1];s.bonus=true;s.rules='v'+RULES.version;log('Reservation confirmed',fmtS(s.start)+' · 1 night · short-notice (bonus)',{delta:'0'});render()}
+
+/* ---- waitlist ---- */
+function joinWait(){
+  const dv=document.getElementById('wl-date').value; if(!dv)return;
+  const [y,m,dd]=dv.split('-').map(Number); const n=parseInt(document.getElementById('wl-nights').value)||2;
+  waitlist.push({start:d(y,m,dd),nights:n});
+  log('Waitlist joined',fmtS(d(y,m,dd))+' – '+fmtS(addD(d(y,m,dd),n))+' · '+n+' nights',{delta:'0'});
+  flash('wlmsg','ok','You are on the list. If a co-owner releases those nights you get first right for 24 hours.');
+  renderWait();
+}
+function renderWait(){
+  const el=document.getElementById('wl-list'); if(!el)return;
+  el.innerHTML=waitlist.length?waitlist.map((w,i)=>`<div class="stay"><div><div class="d">${fmtS(w.start)} – ${fmtS(addD(w.start,w.nights))}</div><div class="m">${w.nights} nights · waiting</div></div><button class="btn ghost sm" onclick="waitlist.splice(${i},1);renderWait()">Leave</button></div>`).join(''):'<div class="note">Not waiting on any dates.</div>';
+}
+
+/* ---- ledger panel (Book page) + strip (Home) + profile ---- */
+function ledgerBar(L){
+  const tot=Math.max(L.allot+L.carry,1);
+  const w=v=>Math.min(100,v/tot*100)+'%';
+  return `<div class="lbar"><i class="used" style="width:${w(L.used)}"></i><i class="resv" style="width:${w(L.reserved)}"></i><i class="forf" style="width:${w(L.forfeit)}"></i></div>`;
+}
+function renderLedger(){
+  const el=document.getElementById('ledger'); if(!el)return;
+  const y=thisUseYear();
+  if(RULES.model!=='nights'){el.innerHTML='<h3>Your Allotment</h3><div class="note">This residence runs on the stays-held model: no annual night cap. Your limits are shown below.</div>';return}
+  const yrs=[y,y+1];
+  el.innerHTML='<h3>Your Nights</h3>'+yrs.map(yy=>{const L=ledger(yy);return `
+    <div class="lyear"><b>${useYearLabel(yy)}</b><span>${L.allot} nights${L.carry?' + '+L.carry+' carried':''}</span></div>
+    ${ledgerBar(L)}
+    <div class="lkey"><span>Used <b>${L.used}</b></span><span>Reserved <b>${L.reserved}</b></span>${L.forfeit?`<span>Forfeited <b>${L.forfeit}</b></span>`:''}${L.bonus?`<span>Bonus, not charged <b>${L.bonus}</b></span>`:''}
+    <span class="big">Remaining <b>${L.remaining}</b></span></div>`}).join('<div style="height:.9rem"></div>')+
+    `<div class="bonus">Nights inside the ${RULES.shortNoticeDays}-day window are <b>bonus</b> and never count. ${RULES.carryMax?'Up to '+RULES.carryMax+' unused nights carry into the next use-year.':'Unused nights do not carry over.'} Rules v${RULES.version}.</div>`;
+  const strip=document.getElementById('lstrip');
+  if(strip){const L=ledger(y);strip.innerHTML=`<span class="k">${useYearLabel(y)} · Residence 214</span><span><b>${L.remaining}</b>nights remaining</span><span><b>${L.used}</b>used</span><span><b>${L.reserved}</b>reserved</span><span><b>${L.bonus}</b>bonus</span><span class="lk" onclick="go('history')">Full history ›</span>`}
+  const pn=document.getElementById('prof-allot');if(pn){const L=ledger(y);pn.textContent=L.remaining+' of '+(L.allot+L.carry)+' remaining';}
+  const ps=document.getElementById('prof-status');if(ps)ps.innerHTML=ME.status==='good'?'<span class="st good">Good standing</span>':'<span class="st lock">Reservations paused</span>';
+}
+function renderCaps(){
+  const u=usage();
+  const set=(id,bar,v,max)=>{const e=document.getElementById(id);if(!e)return;e.textContent=v+' / '+max;document.getElementById(bar).style.width=Math.min(100,v/max*100)+'%'};
+  set('cap-hold','bar-hold',u.hold,RULES.maxHolds);
+  set('cap-win','bar-win',u.win,RULES.peakCap);
+  set('cap-sum','bar-sum',u.sum,RULES.peakCap);
+  set('cap-hol','bar-hol',u.hol,RULES.holidayCap);
+  renderLedger();
+}
+function nightsBookedThisYear(){const L=ledger(thisUseYear());return L.used+L.reserved+L.bonus}
+
+/* ---- history page ---- */
+function allStayRows(){
+  const rows=[];
+  pastStays.forEach(s=>rows.push({...s,status:'completed'}));
+  myStays.forEach(s=>rows.push({...s,status:s.start<=today?'in progress':'upcoming'}));
+  cancelledStays.forEach(s=>rows.push({...s}));
+  return rows.sort((a,b)=>b.start-a.start);
+}
+function renderHistory(){
+  const t=document.getElementById('hist-stays'); if(!t)return;
+  const rows=allStayRows();
+  t.innerHTML='<tr><th>Dates</th><th>Type</th><th>Use-year</th><th class="num">Nights</th><th class="num">Charged</th><th>Status</th><th>Rules</th></tr>'+rows.map(s=>{
+    const bonus=isBonusStay(s)&&!RULES.bonusCharged;
+    const charged=s.status==='cancelled'?(s.forfeit?s.nights:0):(bonus?0:s.nights);
+    const stc={completed:'done','in progress':'up',upcoming:'up',cancelled:'can'}[s.status];
+    return `<tr><td>${fmtS(s.start)} – ${fmtS(addD(s.start,s.nights))}, ${addD(s.start,s.nights).getFullYear()}</td><td>${bonus?'<span class="st bon">Bonus</span>':'Advance'}${s.label&&s.label.includes('swapped')?' · swap':''}</td><td>${useYearLabel(useYearOf(s.start))}</td><td class="num">${s.nights}</td><td class="num ${charged?'':'pos'}">${charged}${s.forfeit?' <span class="t">forfeited</span>':''}</td><td><span class="st ${stc}">${s.status}</span></td><td class="t">${s.rules||'v1'}</td></tr>`}).join('');
+  const f=document.getElementById('aud-filters');
+  const cats=[['all','All'],['stay','Reservations'],['swap','Swaps'],['owner','Ownership'],['rules','Rules'],['admin','Front desk']];
+  f.innerHTML=cats.map(([k,l])=>`<button class="${audFilter===k?'on':''}" onclick="audFilter='${k}';renderHistory()">${l}</button>`).join('');
+  const a=document.getElementById('hist-audit');
+  const list=[...AUDIT].sort((a,b)=>b.t-a.t).filter(e=>audFilter==='all'||e.cat===audFilter);
+  a.innerHTML='<tr><th>When</th><th>By</th><th>Event</th><th>Detail</th><th class="num">Nights</th><th>Rules</th></tr>'+(list.length?list.map(e=>`<tr><td class="t">${e.t.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}<br>${e.t.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})}</td><td>${e.who}</td><td><b style="font-weight:500">${e.action}</b></td><td>${e.detail}</td><td class="num ${String(e.delta).startsWith('-')?'neg':(String(e.delta).startsWith('+')?'pos':'')}">${e.delta}</td><td class="t">${e.rules}</td></tr>`).join(''):'<tr><td colspan="6" class="t">Nothing in this category yet.</td></tr>');
+}
+function exportCSV(kind){
+  let rows=[];
+  if(kind==='stays')rows=[['start','end','nights','type','use_year','charged','status','rules']].concat(allStayRows().map(s=>[s.start.toISOString().slice(0,10),addD(s.start,s.nights).toISOString().slice(0,10),s.nights,isBonusStay(s)?'bonus':'advance',useYearOf(s.start),s.status==='cancelled'?(s.forfeit?s.nights:0):(isBonusStay(s)&&!RULES.bonusCharged?0:s.nights),s.status,s.rules||'v1']));
+  else if(kind==='audit')rows=[['timestamp','actor','event','detail','nights_delta','rules']].concat(AUDIT.map(e=>[e.t.toISOString(),e.who,e.action,e.detail,e.delta,e.rules]));
+  else rows=[['owner','status','used','reserved','bonus','remaining','peak_nights','holiday_nights']].concat(OWNERS.map(o=>{const u=ownerUse(o);return [o.name,o.status,u.used,u.reserved,u.bonus,u.remaining,u.peak,u.hol]}));
+  const csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n');
+  const a=document.createElement('a');a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);a.download='skjol-'+kind+'.csv';document.body.appendChild(a);a.click();a.remove();
+}
+
+/* ---- admin: owners, transfer, blocks, priority, report ---- */
+function ownerUse(o){
+  if(o.you){const L=ledger(thisUseYear());const y=thisUseYear();let peak=0,hol=0;[...pastStays,...myStays].forEach(s=>{const days=stayDays(s).filter(dt=>useYearOf(dt)===y);peak+=days.filter(dt=>isWinterPeak(dt)||isSummerPeak(dt)).length;hol+=days.filter(isHoliday).length});return {used:L.used,reserved:L.reserved,bonus:L.bonus,remaining:L.remaining,peak,hol,upcoming:myStays.length}}
+  const y=thisUseYear();let used=0,reserved=0,peak=0,hol=0,up=0;
+  otherStays.filter(s=>s.owner===o).forEach(s=>{const days=stayDays(s).filter(dt=>useYearOf(dt)===y);if(s.start<today)used+=days.length;else{reserved+=days.length;if(days.length)up++}peak+=days.filter(dt=>isWinterPeak(dt)||isSummerPeak(dt)).length;hol+=days.filter(isHoliday).length});
+  /* seed some completed usage so the report is not empty for co-owners */
+  const seed=[0,11,9,14,6,8,12,3][OWNERS.indexOf(o)]||0; used+=seed;
+  const bonus=[0,2,0,3,1,0,4,0][OWNERS.indexOf(o)]||0;
+  return {used,reserved,bonus,remaining:RULES.annualNights-used-reserved,peak,hol,upcoming:up};
+}
+function toggleLock(i){
+  const o=OWNERS[i];o.status=o.status==='good'?'delinquent':'good';
+  if(o.you)RULES.duesLock=o.status==='delinquent';
+  log(o.status==='good'?'Share unlocked':'Share locked',o.name+(o.status==='good'?': dues current, reservations re-enabled.':': dues past due, new reservations blocked.'),{who:'Front Desk',cat:'owner'});
+  render();
+}
+function renderAdmin(){
+  const el=document.getElementById('ad-owners'); if(!el)return;
+  document.getElementById('rules-ver').textContent=RULES.version;
+  el.innerHTML=OWNERS.map((o,i)=>{const u=ownerUse(o);const pct=Math.min(100,(u.used+u.reserved)/RULES.annualNights*100);
+    return `<div class="owner"><div><div class="on2">${o.name}${o.you?' <span class="t" style="font-size:.62rem;color:var(--plum3)">(you)</span>':''}</div><div class="om">1/8 · since ${o.since} · ${u.used} used · ${u.reserved} reserved · ${u.remaining} left</div></div>
+      <div class="ob"><div class="ubar"><i style="width:${pct}%"></i></div></div>
+      <span class="st ${o.status==='good'?'good':'lock'}">${o.status==='good'?'Good standing':'Locked'}</span>
+      <button class="btn ghost sm" onclick="toggleLock(${i})">${o.status==='good'?'Lock':'Unlock'}</button></div>`}).join('');
+  const sel=document.getElementById('tr-share');
+  if(sel&&!sel.dataset.filled){sel.innerHTML=OWNERS.map((o,i)=>`<option value="${i}">${o.name}</option>`).join('');sel.dataset.filled='1';document.getElementById('tr-date').value=addD(today,45).toISOString().slice(0,10);document.getElementById('mb-date').value=addD(today,30).toISOString().slice(0,10)}
+  document.getElementById('ad-blocks').innerHTML=maintenance.length?maintenance.map((b,i)=>`<div class="stay"><div><div class="d">${fmtS(b.start)} – ${fmtS(addD(b.start,b.nights))}, ${addD(b.start,b.nights).getFullYear()}</div><div class="m">${b.nights} nights · ${b.label}</div></div><button class="btn ghost sm" onclick="removeBlock(${i})">Remove</button></div>`).join(''):'<div class="note">No blocks scheduled.</div>';
+  const yrs=[today.getFullYear(),today.getFullYear()+1,today.getFullYear()+2];
+  document.getElementById('ad-prio').innerHTML='<tr><th>Holiday</th>'+yrs.map(y=>`<th>${y}</th>`).join('')+'</tr>'+MARQUEE.map(h=>`<tr><td>${h.n}</td>${yrs.map(y=>{const o=priorityOwner(h.k,y);const opens=new Date(d(y,h.m,h.dd));opens.setMonth(opens.getMonth()-RULES.priorityExclusiveMonths);return `<td>${o.you?'<b style="font-weight:500;color:var(--plum)">You</b>':o.short}<br><span class="t">${today<opens?'exclusive until '+fmtS(opens)+', '+opens.getFullYear():'open to all'}</span></td>`}).join('')}</tr>`).join('');
+  document.getElementById('ad-util').innerHTML='<tr><th>Share</th><th>Status</th><th class="num">Used</th><th class="num">Reserved</th><th class="num">Bonus</th><th class="num">Remaining</th><th class="num">Peak nights</th><th class="num">Holiday nights</th><th class="num">Upcoming stays</th></tr>'+OWNERS.map(o=>{const u=ownerUse(o);return `<tr><td>${o.name}${o.you?' (you)':''}</td><td><span class="st ${o.status==='good'?'good':'lock'}">${o.status==='good'?'Good':'Locked'}</span></td><td class="num">${u.used}</td><td class="num">${u.reserved}</td><td class="num">${u.bonus}</td><td class="num ${u.remaining<0?'neg':''}">${u.remaining}</td><td class="num">${u.peak}</td><td class="num">${u.hol}</td><td class="num">${u.upcoming}</td></tr>`}).join('');
+}
+function addBlock(){
+  const dv=document.getElementById('mb-date').value;if(!dv)return;
+  const [y,m,dd]=dv.split('-').map(Number);const n=parseInt(document.getElementById('mb-nights').value)||1;const label=document.getElementById('mb-label').value||'Maintenance';
+  const b={start:d(y,m,dd),nights:n,label};
+  const clash=myStays.some(s=>s.start<addD(b.start,n)&&addD(s.start,s.nights)>b.start)||otherStays.some(s=>s.start<addD(b.start,n)&&addD(s.start,s.nights)>b.start);
+  if(clash){flash('trmsg','err','Those nights are reserved by an owner. Move the block or contact the owner first.');return}
+  maintenance.push(b);
+  log('Maintenance block added',fmtS(b.start)+' – '+fmtS(addD(b.start,n))+' · '+n+' nights · '+label,{who:'Front Desk',cat:'admin'});
+  render();
+}
+function removeBlock(i){const b=maintenance[i];maintenance.splice(i,1);log('Maintenance block removed',fmtS(b.start)+' · '+b.label,{who:'Front Desk',cat:'admin'});render()}
+function doTransfer(){
+  const i=parseInt(document.getElementById('tr-share').value);const o=OWNERS[i];
+  const name=document.getElementById('tr-name').value.trim();const dv=document.getElementById('tr-date').value;
+  if(!name||!dv){flash('trmsg','err','Enter the new owner and the closing date.');return}
+  const [y,m,dd]=dv.split('-').map(Number);const closing=d(y,m,dd);
+  const mode=document.querySelector('input[name=tr-res]:checked').value;const pro=document.getElementById('tr-prorate').checked;
+  const stays=o.you?myStays:otherStays.filter(s=>s.owner===o);
+  const after=stays.filter(s=>s.start>=closing);
+  let released=0;
+  if(mode==='release'){after.forEach(s=>{released+=s.nights;const idx=(o.you?myStays:otherStays).indexOf(s);(o.you?myStays:otherStays).splice(idx,1)})}
+  const yearEnd=RULES.useYear==='ski'?d(useYearOf(closing),9,30):d(closing.getFullYear(),12,31);
+  const frac=Math.max(0,Math.min(1,(yearEnd-closing)/MS/365));
+  const u=ownerUse(o);const bal=Math.max(0,u.remaining+released);
+  const buyerBal=pro?Math.round(bal*frac):bal;
+  const old=o.name;
+  o.name=name;o.short=name.replace(/^The /,'').replace(/ Family$/,'');o.since=String(closing.getFullYear());o.status='good';
+  if(!o.you)otherStays.filter(s=>s.owner===o).forEach(s=>s.who=name);
+  log('Ownership transferred','1/8 share: '+old+' → '+name+' · closing '+fmt(closing)+' · '+(mode==='transfer'?after.length+' confirmed reservation'+(after.length!==1?'s':'')+' transferred to buyer':released+' nights released to calendar')+' · balance '+bal+(pro?' pro-rated to '+buyerBal:'')+' nights for '+useYearLabel(useYearOf(closing)),{who:'Front Desk',cat:'owner',delta:pro?'-'+(bal-buyerBal):'0'});
+  log('Share activated','1/8 share of Residence 214 recorded to '+name+'. Holiday rotation position inherited from seller.',{who:'Front Desk',cat:'owner'});
+  document.getElementById('tr-name').value='';document.getElementById('tr-share').dataset.filled='';
+  flash('trmsg','ok','Transfer recorded. '+name+' inherits '+(mode==='transfer'?after.length+' reservation'+(after.length!==1?'s':''):'an open calendar')+' and '+buyerBal+' nights for the rest of '+useYearLabel(useYearOf(closing))+'. Both entries are on the audit trail.');
+  render();
+}
+/* ---- rules panel ---- */
+function loadRulesForm(){
+  const g=id=>document.getElementById(id); if(!g('r-model'))return;
+  g('r-model').value=RULES.model;g('r-annual').value=RULES.annualNights;g('r-useyear').value=RULES.useYear;g('r-horizon').value=RULES.horizonMonths;g('r-short').value=RULES.shortNoticeDays;g('r-bonus').value=RULES.bonusCharged?'yes':'no';g('r-max').value=RULES.maxNightsAdvance;g('r-min').value=RULES.minNightsAdvance;g('r-holds').value=RULES.maxHolds;g('r-peak').value=RULES.peakCap;g('r-hol').value=RULES.holidayCap;g('r-prio').value=RULES.holidayPriority;g('r-cancel').value=RULES.cancelNoticeDays;g('r-late').value=RULES.lateCancelPeak;g('r-carry').value=RULES.carryMax;g('r-turn').value=String(RULES.turnoverDays);
+}
+function applyRules(){
+  const g=id=>document.getElementById(id).value;const before=JSON.stringify(RULES);
+  RULES.model=g('r-model');RULES.annualNights=+g('r-annual');RULES.useYear=g('r-useyear');RULES.horizonMonths=+g('r-horizon');RULES.shortNoticeDays=+g('r-short');RULES.bonusCharged=g('r-bonus')==='yes';RULES.maxNightsAdvance=+g('r-max');RULES.minNightsAdvance=+g('r-min');RULES.maxHolds=+g('r-holds');RULES.peakCap=+g('r-peak');RULES.holidayCap=+g('r-hol');RULES.holidayPriority=g('r-prio');RULES.cancelNoticeDays=+g('r-cancel');RULES.lateCancelPeak=g('r-late');RULES.carryMax=+g('r-carry');RULES.turnoverDays=+g('r-turn');
+  if(before===JSON.stringify(RULES)){flash('rulesmsg','ok','No changes.');return}
+  RULES.version++;
+  const changed=[];const a=JSON.parse(before);for(const k in RULES)if(k!=='version'&&a[k]!==RULES[k])changed.push(k+': '+a[k]+' → '+RULES[k]);
+  log('Rules updated to v'+RULES.version,changed.join(' · '),{who:'Front Desk',cat:'rules'});
+  flash('rulesmsg','ok','Rules v'+RULES.version+' in force. Existing reservations keep the version they were booked under.');
+  render();
+}
+
+/* ---- live availability (simulated other sessions) ---- */
+function toast(title,body){const t=document.getElementById('toast');t.innerHTML='<span class="pulse"></span><div><b>'+title+'</b><div>'+body+'</div></div>';t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),7000)}
+function simCoOwnerBooking(){
+  const map=dayMap();const owner=OWNERS[1+Math.floor(Math.random()*7)];const n=2+Math.floor(Math.random()*4);
+  for(let off=35;off<400;off++){let ok=true;for(let i=0;i<n+RULES.turnoverDays;i++)if(map[key(addD(today,off+i))]){ok=false;break}
+    if(ok){const s={start:addD(today,off),nights:n,who:owner.name,owner};otherStays.push(s);
+      log('Co-owner reservation',owner.name+' · '+fmtS(s.start)+' – '+fmtS(addD(s.start,n))+' · '+n+' nights',{who:owner.name,cat:'stay',delta:''});
+      toast('Just reserved by '+owner.name,fmtS(s.start)+' – '+fmtS(addD(s.start,n))+' at Residence 214. Your calendar updated live.');
+      if(selStart&&stayDays(s).some(dt=>dt.getTime()===selStart.getTime())){selStart=selEnd=null}
+      render();return}}
+}
+function simCoOwnerRelease(){
+  const target=waitlist[0];
+  let idx=target?otherStays.findIndex(s=>s.start>today&&stayDays(s).some(dt=>dt>=target.start&&dt<addD(target.start,target.nights))):-1;
+  if(idx<0)idx=otherStays.findIndex(s=>s.start>addD(today,40));
+  if(idx<0)return;
+  const s=otherStays[idx];otherStays.splice(idx,1);
+  log('Co-owner release',s.who+' released '+fmtS(s.start)+' – '+fmtS(addD(s.start,s.nights)),{who:s.who,cat:'stay',delta:''});
+  toast(target&&idx>=0?'Waitlist: your dates opened':'Nights just opened',s.who+' released '+fmtS(s.start)+' – '+fmtS(addD(s.start,s.nights))+'.'+(target?' You have first right for 24 hours.':' Book them before another owner does.'));
+  render();
+}
+function simSwapRequest(){
+  const adv=myStays.filter(isAdvance);if(!adv.length)return;
+  const give=adv[adv.length-1];const owner=OWNERS[3];
+  swapIncoming.push({give:{start:give.start,nights:give.nights},get:{start:addD(give.start,-9),nights:give.nights},who:owner.name,res:'Residence 215'});
+  log('Swap request received',owner.name+' offered '+fmtS(addD(give.start,-9))+' – '+fmtS(addD(give.start,give.nights-9))+' for your '+fmtS(give.start)+' – '+fmtS(addD(give.start,give.nights)),{who:owner.name,cat:'swap',delta:'0'});
+  toast('Swap request from '+owner.name,'Review it on the Swap page. Accepting re-checks both owners’ limits at that moment.');
+  render();
+}
+let liveTimer=null;
+function armLive(){if(liveTimer)return;liveTimer=setTimeout(()=>{if(document.getElementById('pg-book').classList.contains('on'))simCoOwnerBooking()},14000)}
+
+/* ---- admin mode + nav ---- */
+function setAdmin(on){
+  adminMode=on;
+  document.getElementById('nav-admin').style.display=on?'':'none';
+  document.getElementById('prof-admin').textContent=on?'Leave Front Desk View':'Front Desk View';
+  if(on){loadRulesForm();go('admin')}else go('profile');
+}
+const _go=go0;
+function go(p){_go(p);if(p==='book')armLive();if(p==='history')renderHistory();if(p==='admin'){loadRulesForm();renderAdmin()}}
+
+/* ---- render hook ---- */
+const _render=render0;
+function render(){_render();renderLedger();renderWait();if(document.getElementById('pg-history').classList.contains('on'))renderHistory();if(document.getElementById('pg-admin').classList.contains('on'))renderAdmin()}
 render();
+
 </script>
 </body>
 </html>
