@@ -721,7 +721,7 @@ function go(p) {
   render();
 }
 function render() {
-  const t = { home: ['Welcome home, Alex', fW(TODAY) + ' · Residence 214'], book: ['Book a Stay', 'Tap your arrival, then your departure. That is it.'], stays: ['My Stays', 'Everything you hold, with one-tap changes'], swap: ['Swap', 'Trade stays with other owners, tier for tier'], services: ['Services', 'Shuttle and coffee, reserved in a tap'], residence: ['Residence 214', 'Billing and your house book'], rules: ['How It Works', 'The 1/8 usage plan in plain language'], desk: ['Front Desk', 'Message the front desk, any time'] }[PAGE];
+  const t = { home: ['Welcome home, Alex', fW(TODAY) + ' · Residence 214'], book: ['Book a Stay', 'Tap your arrival, then your departure. That is it.'], stays: ['My Stays', 'Everything you hold, with one-tap changes'], swap: ['Swap', 'Trade stays with other owners, tier for tier'], services: ['Services', 'Ski shuttle, reserved in a tap'], residence: ['Residence 214', 'Billing and your house book'], rules: ['How It Works', 'The 1/8 usage plan in plain language'], desk: ['Front Desk', 'Message the front desk, any time'] }[PAGE];
   $('#ttl').textContent = t[0]; $('#sub').textContent = t[1];
   const sw = forMe().length; const pill = $('#swpill'); if (pill) { pill.textContent = sw || ''; pill.style.display = sw ? '' : 'none'; }
   $('#belldot').style.display = NOTES.some(n => !n.read) ? '' : 'none';
@@ -955,11 +955,10 @@ function stayRow(s, past) {
 function vStays() {
   const up = upcoming(); const past = mine().filter(s => add(s.start, s.nights) <= TODAY).sort((a, b) => b.start - a.start); const c = counts();
   $('#view').innerHTML = `
-  <div class="grid g4">
+  <div class="grid g3">
     <div class="card kpi"><span class="n">${c.all}/6</span><span class="l">Bookings held</span></div>
     <div class="card kpi"><span class="n">${c.pp}/1</span><span class="l">Prime+ held</span></div>
     <div class="card kpi"><span class="n">${c.p}/2</span><span class="l">Prime held</span></div>
-    <div class="card kpi"><span class="n">${up.reduce((a, s) => a + s.nights, 0)}</span><span class="l">Days ahead on the calendar</span></div>
   </div>
   <div class="card mt"><h3>Upcoming<span class="hint"><button class="btn sm" onclick="go('book')">+ Book a stay</button></span></h3>${up.length ? up.map(s => stayRow(s)).join('') : '<div class="empty">No upcoming stays.</div>'}</div>
   <div class="card mt"><h3>Past stays</h3>${past.map(s => stayRow(s, true)).join('') || '<div class="empty">None yet.</div>'}</div>
@@ -1078,8 +1077,7 @@ function vServices() {
     <div class="svc">${times.map(t => `<button class="${SH.t === t ? 'on' : ''}" onclick="bookShuttle('${t}','${fmtT(t)}')">${fmtT(t)}</button>`).join('')}</div>
     <div class="small muted" style="margin-top:10px">Tap a time to reserve. Ski valet loads your gear before you board.</div></div>
   <div><div class="card"><h3>Your shuttles</h3>${SHUTTLES.length ? SHUTTLES.map((s, i) => `<div class="kv"><span>${s.d} · ${s.t} · ${s.r}</span><b>${s.n} seat${s.n > 1 ? 's' : ''} <button class="btn xs ghost" onclick="SHUTTLES.splice(${i},1);render()">Cancel</button></b></div>`).join('') : '<div class="empty">None reserved.</div>'}</div>
-  <div class="card mt"><h3>Coffee bar<span class="hint">tap to order, ready in 15 minutes</span></h3><div class="svc" style="grid-template-columns:repeat(2,1fr)">${['Latte', 'Americano', 'Cappuccino', 'Chai', 'Hot Chocolate', 'Herbal Tea'].map(x => `<button onclick="COFFEE.unshift({x:'${x}',at:new Date()});toast('${x} ordered. Ready at the coffee bar in 15 minutes.');render()">${x}</button>`).join('')}</div>
-    ${COFFEE.length ? `<div class="mt">${COFFEE.slice(0, 4).map(c => `<div class="kv"><span>${c.x}</span><b class="small" style="color:var(--teal)">Being prepared</b></div>`).join('')}</div>` : ''}</div></div></div>`;
+  </div></div>`;
 }
 function bookShuttle(t, label) {
   const d = add(TODAY, SH.day); SH.t = t; SHUTTLES.push({ d: SH.day === 0 ? 'Today' : fS(d), t: label, r: SH.r === 'bc' ? 'Beaver Creek' : 'Vail', n: SH.seats });
@@ -1097,7 +1095,7 @@ const BILL = (() => {
     autopay: false, method: 'Checking ending 4821', methods: ['Checking ending 4821', 'Visa ending 1150'],
     open: [{ id: 'INV-' + TODAY.getFullYear() + '-' + qn[q], d: qLab(q, TODAY.getFullYear()), sub: 'Operations, reserves and BGV management', amt: 4850, due },
       { id: 'INV-DC-' + K(add(TODAY, -75)), d: 'Departure clean', sub: 'Stay ending ' + fL(add(TODAY, -71)), amt: 285, due },
-      { id: 'INV-SV-' + K(add(TODAY, -40)), d: 'Café and services', sub: 'Coffee bar and in-residence requests', amt: 46.5, due }],
+      { id: 'INV-SV-' + K(add(TODAY, -40)), d: 'In-residence services', sub: 'Front desk requests during your stay', amt: 46.5, due }],
     paid: [{ id: 'INV-' + py + '-' + qn[pq], d: qLab(pq, py), amt: 4850, on: add(TODAY, -88), via: 'Checking ending 4821' },
       { id: 'INV-DC-' + K(add(TODAY, -140)), d: 'Departure clean', amt: 285, on: add(TODAY, -128), via: 'Visa ending 1150' },
       { id: 'INV-' + (pq === 0 ? py - 1 : py) + '-' + qn[(pq + 3) % 4], d: qLab((pq + 3) % 4, pq === 0 ? py - 1 : py), amt: 4850, on: add(TODAY, -180), via: 'Checking ending 4821' },
@@ -1139,9 +1137,7 @@ function vRes() {
       <div class="note"><div class="ic" style="background:var(--plum);color:#fff">✓</div><div><b>Guests stay with you</b><div class="small muted">Guests may stay when the owner is present.</div></div></div>
       <div class="note"><div class="ic" style="background:var(--red);color:#fff">✕</div><div><b>No rentals</b><div class="small muted">Residences are for owners, family and guests.</div></div></div>
       <div class="note"><div class="ic" style="background:var(--gold);color:#fff">$</div><div><b>Departure clean</b><div class="small muted">Charged to the owner who stayed. Damage is the responsibility of the owner staying at the time.</div></div></div></div></div></div>
-  <div class="card mt"><h3>Amenities map</h3><div class="imgcard"><img src="${IMG.map}" alt="Skjól amenities map"></div></div>
-  <div class="grid g3 mt">${[['g1', 'Fitness and recovery'], ['g2', 'Sports simulator lounge'], ['g3', "Owners' ski vault"]].map(([k, l]) => `<div class="imgcard" style="height:200px"><img src="${IMG[k]}" alt=""><div class="cap">${l}</div></div>`).join('')}</div>
-  <div class="card mt"><h3>Oxygenated sleep</h3><div class="grid g3"><div class="kpi"><span class="n">Up to +33%</span><span class="l">more oxygen at your pillow</span></div><div class="kpi"><span class="n">Near sea level</span><span class="l">oxygen while you sleep</span></div><div class="kpi"><span class="n">13 dB</span><span class="l">whisper-quiet operation</span></div></div><div class="small muted" style="margin-top:10px">Wellness system, not a medical device. Figures are manufacturer estimates; individual results vary.</div></div>`;
+  <div class="card mt"><h3>Amenities map</h3><div class="imgcard"><img src="${IMG.map}" alt="Skjól amenities map"></div></div>`;
 }
 
 /* ---------- HOW IT WORKS ---------- */
