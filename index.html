@@ -614,7 +614,7 @@ function evaluate(start, nights, opts = {}) {
     const until = add(r.at, RULES.pauseDays); if (r.skipFor === excl) return;
     const overlap = start < add(r.start, r.nights) && add(start, nights) > r.start;
     if (overlap) no('You released these dates on ' + fS(r.at) + '. You can rebook them on ' + fS(until) + '.');
-    else if ((r.tier === 'pp' || r.tier === 'p') && parts.some(p => !p.short && p.tier === r.tier)) no('You released a ' + TNAME[r.tier] + ' stay on ' + fS(r.at) + '. You can book another ' + TNAME[r.tier] + ' stay on ' + fS(until) + '.');
+    else if (parts.some(p => !p.short && p.tier === r.tier)) no('You released a ' + TNAME[r.tier] + ' stay on ' + fS(r.at) + '. You can book another ' + TNAME[r.tier] + ' stay on ' + fS(until) + '.');
   });
   // repeat holiday / repeat week wait
   const heldStays = held(excl);
@@ -644,9 +644,9 @@ function doRelease(id, why) {
 function evaluateMove(id, start, nights) {
   const s = STAYS.find(x => x.id === id); const t = tierOfStay(s);
   const ev = evaluate(start, nights, { excludeId: id });
-  // moving a Prime+ or Prime stay to new dates in the same tier triggers the 7-day wait
+  // moving a stay to new dates in the same tier triggers the 7-day wait (every tier)
   const newT = ev.parts.length ? ev.parts.reduce((a, p) => TR[p.tier] > TR[a] ? p.tier : a, 's') : 's';
-  if (ev.ok && (t === 'pp' || t === 'p') && newT === t && !ev.parts.every(p => p.short)) {
+  if (ev.ok && newT === t && !ev.parts.every(p => p.short)) {
     ev.ok = false; ev.reasons.push({ r: 'A ' + TNAME[t] + " stay can't be swapped instantly. Release it now and you can book the new " + TNAME[t] + ' dates on ' + fS(add(TODAY, RULES.pauseDays)) + ', if still open.', fix: 'releaseThenWatch' });
   }
   return ev;
@@ -1131,7 +1131,7 @@ function billingHTML() {
 }
 function vRes() {
   $('#view').innerHTML = billingHTML() + `<div class="grid g21"><div class="card"><h3>Essentials<span class="hint">tap to copy</span></h3>
-    ${[['Wi-Fi network', 'SKJOL-214'], ['Wi-Fi password', 'Velkomin214!'], ['Owner storage', 'End of the hall, Level 2'], ['Ski locker', 'No. 17 · Ski Vault, Level P1'], ['Parking', '2 spaces during your stay'], ['Front desk (24/7)', '(970) 547-4000'], ['Address', '255 Chapel Place, Avon, CO 81620']].map(([k, v]) => `<div class="kv" style="cursor:pointer" onclick="copy('${v.replace(/'/g, "\\'")}')"><span>${k}</span><b>${v}</b></div>`).join('')}</div>
+    ${[['Wi-Fi network', 'SKJOL-214'], ['Wi-Fi password', 'Velkomin214!'], ['Ski locker', 'No. 17 · Ski Vault, Level P1 · during your stay only'], ['Parking', '2 spaces during your stay'], ['Front desk (24/7)', '(970) 547-4000'], ['Address', '255 Chapel Place, Avon, CO 81620']].map(([k, v]) => `<div class="kv" style="cursor:pointer" onclick="copy('${v.replace(/'/g, "\\'")}')"><span>${k}</span><b>${v}</b></div>`).join('')}</div>
     <div class="card"><h3>Owner rules</h3><div style="display:grid;gap:10px;font-size:14px">
       <div class="note"><div class="ic" style="background:var(--plum);color:#fff">✓</div><div><b>Pets welcome</b><div class="small muted">Pet rules will be published with the owner rules.</div></div></div>
       <div class="note"><div class="ic" style="background:var(--plum);color:#fff">✓</div><div><b>Guests stay with you</b><div class="small muted">Guests may stay when the owner is present.</div></div></div>
@@ -1141,14 +1141,17 @@ function vRes() {
 }
 
 /* ---------- HOW IT WORKS ---------- */
+const HRULE = { mlk: 'Friday before MLK Day through MLK Day (3rd Monday of January)', pres: "Thursday before Presidents' Day through the Tuesday after (3rd Monday of February)", mem: 'Friday before Memorial Day through Memorial Day (last Monday of May)',
+  jul4: 'July 2 through July 5, every year', labor: 'Friday before Labor Day through Labor Day (1st Monday of September)', thx: 'Tuesday before Thanksgiving through the Sunday after (4th Thursday of November)',
+  xmas: 'December 23 through December 28, every year', ny: 'December 29 through January 4, every year' };
 function vRules() {
   const R = [
     ['6 bookings at a time', 'Hold up to 6 bookings anywhere in the next 24 months. Each booking is one stay of 2 to 7 days, any day in, any day out. A booking frees up the day that stay begins.'],
     ['Three seasons', 'Prime+ is 8 holiday weeks (Thanksgiving, Christmas, New Year\'s, MLK, Presidents\' Day, Memorial Day, Fourth of July, Labor Day). Prime is Dec 16 to Mar 31 and May 25 to Sep 14. Shoulder is everything else. All 52 weeks are bookable.'],
     ['Fair limits', 'Of your 6, hold no more than 1 Prime+ and 2 Prime stays at a time. A stay counts as its highest season.'],
     ['Same window for everyone', 'Each day, one new day opens exactly 24 months out, at the same moment for every owner. First come, first served.'],
-    ['Short-notice stays', 'Any open dates arriving in the next 30 days can be booked as short-notice stays. They do not use a booking or count toward your limits.'],
-    ['Change anytime, no fees', 'Release or move a stay whenever you like. The dates go back to everyone right away, and you wait 7 days before rebooking them or booking another stay in the same tier.'],
+    ['Short-notice stays', 'Any open dates arriving in the next 30 days can be booked as short-notice stays. They do not use a booking or count toward your limits. A small use fee covers cleaning and management.'],
+    ['Change anytime, no fees', 'Release or move a stay whenever you like. The dates go back to everyone right away, and you wait 7 days before rebooking them or booking another stay in the same tier. This applies to every tier.'],
     ['Repeat holiday wait', 'If you already hold the same holiday or week this year or next, you wait 7 days after it opens before booking it again. Everyone else can book it right away.'],
     ['Opening selection', 'At launch, owners make first selections in contract order. Owners 6, 7 and 8 may hold a third Prime stay in that first round only.'],
     ['Swaps', 'Offer one of your stays and pick the month(s) or dates you would take. Every owner holding a same-tier stay in those dates is notified at once, and the first to accept gets the swap. Prime+ for Prime+, Prime for Prime, Shoulder for Shoulder. Short-notice bookings and stays starting within 30 days cannot be swapped.'],
@@ -1156,8 +1159,8 @@ function vRules() {
   $('#view').innerHTML = `<div class="card"><h3>Season calendar<span class="hint">next 24 months</span></h3>${ribbon(24)}<div class="legend"><span><i style="background:var(--ppg)"></i>Prime+ · 8 holiday weeks</span><span><i style="background:var(--pg)"></i>Prime · 24 weeks</span><span><i style="background:var(--sg)"></i>Shoulder · 20 weeks</span></div></div>
   <div class="card mt"><h3>Rules at a glance</h3>${[['Bookings held at once', '6'], ['Stay length', '2 to 7 days, any day in or out'], ['Prime+ held at once', '1'], ['Prime held at once', '2'], ['Booking window', '24 months, rolling daily'], ['Short-notice window', '30 days, any open date, no booking used'], ['Wait after release or move', '7 days (dates and same tier)'], ['Repeat holiday or week wait', '7 days after it opens'], ['Cancellation and no-show fees', 'None'], ['Maintenance closure', 'None, all 52 weeks bookable']].map(([k, v]) => `<div class="kv"><span>${k}</span><b>${v}</b></div>`).join('')}</div>
   <div class="grid g2 mt">${R.map((r, i) => `<div class="rule"><div class="no">${i + 1}</div><div><b>${r[0]}</b><p>${r[1]}</p></div></div>`).join('')}</div>
-  <div class="card mt"><h3>Upcoming Prime+ holiday weeks</h3><table class="tbl"><tr><th>Holiday</th><th>Dates</th><th>Opens to book</th></tr>${HOL.filter(h => h.e > TODAY && h.s < add(HORIZON, 400)).slice(0, 12).map(h => `<tr><td><b>${h.name}</b></td><td>${fS(h.s)} to ${fL(h.e)}</td><td>${openedOn(h.s) <= TODAY ? '<span class="chip c-free">Open now</span>' : fL(openedOn(h.s))}</td></tr>`).join('')}</table></div>
-  <div class="small muted mt">Usage plan draft dated October 26, 2026, subject to change and to the final governing documents.</div>`;
+  <div class="card mt"><h3>Prime+ holiday weeks<span class="hint">dates are nights; check out the morning after the last night</span></h3><table class="tbl"><tr><th>Holiday</th><th>Rule</th><th>Prime+ nights</th><th>Check out by</th><th>Opens to book</th></tr>${HOL.filter(h => h.e > TODAY && h.s < add(HORIZON, 400)).slice(0, 12).map(h => `<tr><td><b>${h.name}</b></td><td class="small muted">${HRULE[h.key]}</td><td>${fW(h.s)} to ${fW(h.e)}, ${h.e.getFullYear()}</td><td>${fW(add(h.e, 1))}</td><td>${openedOn(h.s) <= TODAY ? '<span class="chip c-free">Open now</span>' : fL(openedOn(h.s))}</td></tr>`).join('')}</table></div>
+  <div class="small muted mt">Usage plan draft dated October 27, 2026, subject to change and to the final governing documents.</div>`;
 }
 
 
